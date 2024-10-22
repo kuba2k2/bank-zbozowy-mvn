@@ -29,14 +29,14 @@ public class AtmCardInfoTest {
 	@Test
 	public void testTryPinCorrect() {
 		fixture.cardIn();
-		fixture.tryPin("1525");
+		fixture.tryPin("1337");
 		assertTrue(fixture.pinWasOk);
 	}
 	
 	@Test
 	public void testTryPinIncorrect() {
 		fixture.cardIn();
-		fixture.tryPin("1524");
+		fixture.tryPin("1338");
 		assertFalse(fixture.pinWasOk);
 		assertEquals(2, fixture.pinTriesLeft);
 	}
@@ -44,9 +44,9 @@ public class AtmCardInfoTest {
 	@Test
 	public void testTryPinCardLocked() {
 		fixture.cardIn();
-		fixture.tryPin("1524");
-		fixture.tryPin("1521");
-		fixture.tryPin("1520");
+		fixture.tryPin("1338");
+		fixture.tryPin("1336");
+		fixture.tryPin("1335");
 		assertFalse(fixture.pinWasOk);
 		assertTrue(fixture.isCardLocked);
 		assertEquals(0, fixture.pinTriesLeft);
@@ -55,7 +55,7 @@ public class AtmCardInfoTest {
 	@Test
 	public void testTryWithdraw() {
 		fixture.cardIn();
-		fixture.tryPin("1525");
+		fixture.tryPin("1337");
 		assertEquals(1000, fixture.balance);
 		fixture.tryWithdraw("400");
 		assertEquals(600, fixture.balance);
